@@ -10,7 +10,7 @@ import {useState, useEffect} from "react"
 function App() {
 //here we are using setState to initialize a list of states.
 const [states, setStates] = useState ([])
-
+const [state, setState] = useState('countrywide')
 //https://disease.sh/v3/covid-19/states
 //in order to make a call to this api we use the useEffect function 
 //the use effect hook runs a piece of code based on a given condition 
@@ -33,9 +33,14 @@ useEffect (() => {
     })
   }
   getStatesData();
-}, [])
+}, []);
 
+const onStateChange = (event) => {
+  const stateCode = event.target.value;
 
+setState(stateCode);
+
+};
 
 
 
@@ -46,20 +51,14 @@ useEffect (() => {
 
      <h1>COVID TRACKER</h1>
      <FormControl className='app__dropdwon'> 
-          <Select
-            variant="outlined"
-            value="abc"
-          >
+          <Select variant="outlined" onChange={onStateChange} value={state}>
+          <MenuItem value="countrywide">All of US</MenuItem>
 
             {/* HERE WE WANT TO LOOP THROUGH ALL THE STATES AND SHOW A DROP DOWN MENU FOR EACH  */}
           {/* //this is JSX. it essentially allows us to write JS in HTML */}
-            {
-              states.map(state => (
-                <MenuItem value={state.value}>{state.name}</MenuItem>
+            {states.map(state => (
+                <MenuItem value={state.name}>{state.name}</MenuItem>
               ))}
-            <MenuItem value="worldwide">OPTION 1 </MenuItem>
-            <MenuItem value="worldwide">OPTION 2 cases </MenuItem>
-            <MenuItem value="worldwide">OPTION 3 </MenuItem>
 
           </Select>
       </FormControl>
