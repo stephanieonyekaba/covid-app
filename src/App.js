@@ -5,6 +5,7 @@ import {
   Select
 } from "@mui/material"
 import {useState, useEffect} from "react"
+import InfoBox from './InfoBox';
 
 
 function App() {
@@ -49,7 +50,9 @@ setState(stateCode);
     <div className="app">
 <div className="app__header">
 
+{/* THIS IS THE HEADER */}
      <h1>COVID TRACKER</h1>
+{/* THIS IS THE DROP DOWN MENU FOR EACH STATE */}
      <FormControl className='app__dropdwon'> 
           <Select variant="outlined" onChange={onStateChange} value={state}>
           <MenuItem value="countrywide">All of US</MenuItem>
@@ -63,15 +66,17 @@ setState(stateCode);
           </Select>
       </FormControl>
 </div>
-    {/* //HEADDER
-    //TITLE AND SELECT INPUT DROPDOWN
-    
-    //INFOBOX
-    //INFOBOX
 
-    //TABLE
-    //GRAPH
-    //MAP */}
+{/* THIS IS THE STATES PAGE */}
+        <div className="app__stats">
+    {/* INFO BOX 1: COVID CASES  */}
+              <InfoBox title='Covid Cases' total={3000}/>
+              <InfoBox title='Covid Deaths' total={60}/>
+  
+    {/* INFO BOX 2: COVID DEATHS */}
+    {/* INFO BOX 3: ACTIVE CASES */}
+          
+        </div>
 
 
 
