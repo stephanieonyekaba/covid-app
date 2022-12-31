@@ -71,9 +71,9 @@ setState(stateCode);
         <div className="app__stats">
 
     {/* INFO BOX 1: COVID CASES  */}
-              <InfoBox title='Covid Cases' total={3000}/>
-              <InfoBox title='Covid Deaths' total={60}/>
-              <InfoBox title='Recoveries' total={800}/>
+              <InfoBox title='Covid Cases' total={3000} cases={50}/>
+              <InfoBox title='Covid Deaths' total={60} cases={20}/>
+              <InfoBox title='Recoveries' total={800} cases={40}/>
   
     {/* INFO BOX 2: COVID DEATHS */}
     {/* INFO BOX 3: ACTIVE CASES */}
