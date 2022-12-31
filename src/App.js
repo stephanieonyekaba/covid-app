@@ -69,9 +69,11 @@ setState(stateCode);
 
 {/* THIS IS THE STATES PAGE */}
         <div className="app__stats">
+
     {/* INFO BOX 1: COVID CASES  */}
               <InfoBox title='Covid Cases' total={3000}/>
               <InfoBox title='Covid Deaths' total={60}/>
+              <InfoBox title='Recoveries' total={800}/>
   
     {/* INFO BOX 2: COVID DEATHS */}
     {/* INFO BOX 3: ACTIVE CASES */}
