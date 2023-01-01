@@ -6,7 +6,8 @@ import {
 } from "@mui/material"
 import {useState, useEffect} from "react"
 import InfoBox from './InfoBox';
-
+import Map from './Map.js'
+import {Card, CardContent, Typography} from '@mui/material';
 
 function App() {
 //here we are using setState to initialize a list of states.
@@ -47,42 +48,55 @@ setState(stateCode);
 
 
   return (
-    <div className="app">
+<div className="app">
+  
+<div className="app__left">
 <div className="app__header">
+    {/* THIS IS THE HEADER */}
+        <h1>COVID TRACKER</h1>
+    {/* THIS IS THE DROP DOWN MENU FOR EACH STATE */}
+        <FormControl className='app__dropdwon'> 
+              <Select variant="outlined" onChange={onStateChange} value={state}>
+              <MenuItem value="countrywide">All of US</MenuItem>
 
-{/* THIS IS THE HEADER */}
-     <h1>COVID TRACKER</h1>
-{/* THIS IS THE DROP DOWN MENU FOR EACH STATE */}
-     <FormControl className='app__dropdwon'> 
-          <Select variant="outlined" onChange={onStateChange} value={state}>
-          <MenuItem value="countrywide">All of US</MenuItem>
+                {/* HERE WE WANT TO LOOP THROUGH ALL THE STATES AND SHOW A DROP DOWN MENU FOR EACH  */}
+              {/* //this is JSX. it essentially allows us to write JS in HTML */}
+                {states.map(state => (
+                    <MenuItem value={state.name}>{state.name}</MenuItem>
+                  ))}
 
-            {/* HERE WE WANT TO LOOP THROUGH ALL THE STATES AND SHOW A DROP DOWN MENU FOR EACH  */}
-          {/* //this is JSX. it essentially allows us to write JS in HTML */}
-            {states.map(state => (
-                <MenuItem value={state.name}>{state.name}</MenuItem>
-              ))}
-
-          </Select>
-      </FormControl>
+              </Select>
+          </FormControl>
 </div>
 
+
 {/* THIS IS THE STATES PAGE */}
-        <div className="app__stats">
+<div className="app__stats">
 
-    {/* INFO BOX 1: COVID CASES  */}
-              <InfoBox title='Covid Cases' total={3000} cases={50}/>
-              <InfoBox title='Covid Deaths' total={60} cases={20}/>
-              <InfoBox title='Recoveries' total={800} cases={40}/>
-  
-    {/* INFO BOX 2: COVID DEATHS */}
-    {/* INFO BOX 3: ACTIVE CASES */}
-          
-        </div>
+      {/* INFO BOX 1: COVID CASES  */}
+                <InfoBox title='Covid Cases' total={3000} cases={50}/>
+      {/* INFO BOX 2: COVID DEATHS */}
+                <InfoBox title='Covid Deaths' total={60} cases={20}/>
+      {/* INFO BOX 3: ACTIVE CASES */}
+                <InfoBox title='Recoveries' total={800} cases={40}/>
+       
+</div>
+
+  </div>
+
+<Card className="app__right">
+  <CardContent>
+    <h3>Covid Cases by State</h3>
+    <h3>Covid Cases Nationwide</h3>
+    <Map />
+  </CardContent>
+    {/* TABLE */}
+    {/* GRAPH */}
+</Card>
+
+</div>
 
 
-
-    </div>
   );
 }
 

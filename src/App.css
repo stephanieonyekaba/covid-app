@@ -4,13 +4,23 @@
 body {
   background-color: #C1CFDA;
 }
+.app{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+
+}
+.app__stats{
+  display: flex;
+  justify-content: space-between;
+}
 .app__header {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-justify-content: space-between;
+  justify-content: space-between;
 }
-.app__stats{
-  display: flex;
-  /* flex-direction: row; */
+.app__left{
+  width: 700px;
 }
+
