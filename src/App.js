@@ -13,6 +13,7 @@ function App() {
 //here we are using setState to initialize a list of states.
 const [states, setStates] = useState ([])
 const [state, setState] = useState('countrywide')
+const [stateInfo, setStateInfo] = useState({})
 //https://disease.sh/v3/covid-19/states
 //in order to make a call to this api we use the useEffect function 
 //the use effect hook runs a piece of code based on a given condition 
@@ -37,12 +38,24 @@ useEffect (() => {
   getStatesData();
 }, []);
 
-const onStateChange = (event) => {
+const onStateChange = async (event) => {
   const stateCode = event.target.value;
-
 setState(stateCode);
 
+//we are saying if the statecode is === countrywide we want to use the url for all country covid cases
+//otherwise we use the original url for each individual state
+const url = stateCode === 'countrywide' ? 'https://disease.sh/v3/covid-19/countries/usa' 
+:`https://disease.sh/v3/covid-19/states/${stateCode}`
+
+await fetch(url)
+  .then(response =>response.json())
+  .then(data => {
+        setState(stateCode)
+        setStateInfo(data)
+  })
 };
+
+console.log("THIS IS THE STATE INFO>>>>>>>>>>>>>", stateInfo)
 
 
 
@@ -74,21 +87,22 @@ setState(stateCode);
 <div className="app__stats">
 
       {/* INFO BOX 1: COVID CASES  */}
-                <InfoBox title='Covid Cases' total={3000} cases={50}/>
+                <InfoBox title='Covid Cases' cases={stateInfo.cases} total={stateInfo.casesPerOneMillion}/>
       {/* INFO BOX 2: COVID DEATHS */}
-                <InfoBox title='Covid Deaths' total={60} cases={20}/>
+                <InfoBox title='Covid Deaths' cases={stateInfo.deaths} total={stateInfo.deathsPerOneMillion}/>
       {/* INFO BOX 3: ACTIVE CASES */}
-                <InfoBox title='Recoveries' total={800} cases={40}/>
+                <InfoBox title='Recoveries' cases={stateInfo.recovered} total={stateInfo.recovered}/>
        
 </div>
 
   </div>
 
+<Map />
 <Card className="app__right">
   <CardContent>
     <h3>Covid Cases by State</h3>
     <h3>Covid Cases Nationwide</h3>
-    <Map />
+
   </CardContent>
     {/* TABLE */}
     {/* GRAPH */}

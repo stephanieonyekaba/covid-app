@@ -20,7 +20,19 @@ body {
   margin-bottom: 20px;
   justify-content: space-between;
 }
+
+/* this allows our left side of the app to take up 90% of the space */
 .app__left{
-  width: 700px;
+  flex: 0.9;
+}
+
+/* We can make our app layout responsive by using a media querry */
+/* here we are saying, when the width of the screen hits 900px or less, switch to a column flex direction  */
+@media (max-width: 900px) {
+  .app {
+    flex-direction: column;
+    padding: 20px;
+
+  }
 }
 

@@ -5,20 +5,21 @@ function InfoBox({title, cases,total }) {
 
   return (
 <Card className='infoBox'>
-    <CardContent>
+    <CardContent >
 
 {/* TITLE */}
-        <Typography className='infoBox__title' color="textPrimary" variant="h6">
+        <Typography className='infoBox__title' color="textPrimary" variant="h5">
             {title}
         </Typography>
 
 {/* NUMBER OF CASES */}
-        <h2 className='infoBox__cases' >{cases}</h2>
+        <h2 className='infoBox__cases' >{cases} </h2>
+        <small>per one Million </small>
+
 
 {/* TOTAL NUMBER OF CASES */}
-        <Typography className='infoBox__total' color="red" variant="h6">
-            <bold>{total} Total  </bold>
-        </Typography>
+<h4 className='infoBox__cases' >{total} </h4>
+        
     </CardContent>
 </Card>
 
