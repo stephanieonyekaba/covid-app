@@ -21,6 +21,15 @@ const [stateInfo, setStateInfo] = useState({})
 //in this case, the function will run each time the app loads and each time the
 //state of the state variable is changed (see setState function above)
 
+useEffect(() => {
+  fetch("https://disease.sh/v3/covid-19/countries/usa")
+    .then(response => response.json())
+    .then(data => {
+      setStateInfo(data)
+
+    })
+}, [])
+
 
 useEffect (() => {
 //we use an async function. sends a request waits for esponse.use promise chain to deal with response
