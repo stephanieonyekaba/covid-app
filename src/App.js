@@ -10,6 +10,7 @@ import Map from './Map.js'
 import {Card, CardContent, Typography} from '@mui/material';
 import Table from './Table'
 
+
 function App() {
 //here we are using setState to initialize a list of states.
 const [states, setStates] = useState ([])
