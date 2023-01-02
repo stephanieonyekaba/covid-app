@@ -8,12 +8,14 @@ import {useState, useEffect} from "react"
 import InfoBox from './InfoBox';
 import Map from './Map.js'
 import {Card, CardContent, Typography} from '@mui/material';
+import Table from './Table'
 
 function App() {
 //here we are using setState to initialize a list of states.
 const [states, setStates] = useState ([])
 const [state, setState] = useState('countrywide')
 const [stateInfo, setStateInfo] = useState({})
+const [tableData, setTableData] = useState([])
 //https://disease.sh/v3/covid-19/states
 //in order to make a call to this api we use the useEffect function 
 //the use effect hook runs a piece of code based on a given condition 
@@ -41,7 +43,9 @@ useEffect (() => {
         {
           name: state.state,
         }))
+        setTableData(data)
         setStates(states)
+
     })
   }
   getStatesData();
@@ -110,6 +114,7 @@ console.log("THIS IS THE STATE INFO>>>>>>>>>>>>>", stateInfo)
 <Card className="app__right">
   <CardContent>
     <h3>Covid Cases by State</h3>
+    <Table states={tableData} /> 
     <h3>Covid Cases Nationwide</h3>
 
   </CardContent>
